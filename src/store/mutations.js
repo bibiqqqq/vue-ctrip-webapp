@@ -30,6 +30,12 @@ const mutations = {
   },
   [types.SET_HOTEL](state, hotel) {
     state.hotel = hotel
+  },
+  [types.SET_ISLOGIN](state, isLogin) {
+    state.isLogin = isLogin
+  },
+  [types.SET_USERINFO](state, userInfo) {
+    state.userInfo = userInfo
   }
 }
 export default mutations

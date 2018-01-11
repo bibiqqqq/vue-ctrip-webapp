@@ -75,6 +75,12 @@ const hotel = (resolve) => {
   })
 }
 
+const login = (resolve) => {
+  import('components/login/login').then((module) => {
+    resolve(module)
+  })
+}
+
 export default new Router({
   routes: [
     {
@@ -183,6 +189,11 @@ export default new Router({
           component: hotel
         }
       ]
+    },
+    {
+      path: '/login',
+      name: '登录',
+      component: login
     }
   ]
 })

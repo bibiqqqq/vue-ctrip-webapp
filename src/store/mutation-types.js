@@ -17,3 +17,7 @@ export const SET_NAVBAR = 'SET_NAVBAR'
 export const SET_NOWDAY = 'SET_NOWDAY'
 
 export const SET_HOTEL = 'SET_HOTEL'
+
+export const SET_ISLOGIN = 'SET_ISLOGIN'
+
+export const SET_USERINFO = 'SET_USERINFO'

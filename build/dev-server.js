@@ -28,6 +28,7 @@ const appData = require('../data.json')
 const hotels = appData.hotels
 const keywords = appData.keywords
 const calendar = appData.calendar
+const history = appData.history
 var apiRoutes = express.Router()
 apiRoutes.get('/hotels', function (req, res) {
   res.json({
@@ -45,6 +46,12 @@ apiRoutes.get('/calendar', function (req, res) {
   res.json({
     errno: 0,
     data: calendar
+  })
+})
+apiRoutes.get('/history', function (req, res) {
+  res.json({
+    errno: 0,
+    data: history
   })
 })
 app.use('/api', apiRoutes)

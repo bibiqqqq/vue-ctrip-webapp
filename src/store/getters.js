@@ -17,3 +17,7 @@ export const navbar = state => state.navbar
 export const nowday = state => state.nowday
 
 export const hotel = state => state.hotel
+
+export const isLogin = state => state.isLogin
+
+export const userInfo = state => state.userInfo

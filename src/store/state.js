@@ -8,6 +8,8 @@ const state = {
   keywords: '',
   navbar: '',
   nowday: '',
-  hotel: []
+  hotel: [],
+  isLogin: false,
+  userInfo: {}
 }
 export default state

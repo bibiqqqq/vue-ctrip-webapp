@@ -1,13 +1,45 @@
 <template>
-  <div>haha</div>
+  <div class="trip">
+    <img src="./trip.png" alt="">
+    <el-button v-show="!isLogin" @click="routerToLogin" class="btn" round>登录查看行程</el-button>
+    <el-button v-show="isLogin" @click="routerToLogin" type="warning" class="btn btn-login" round>跟着主播去旅行<i class="el-icon-caret-right"></i></el-button>
+  </div>
 </template>
 
 <script>
 export default {
-
+  methods: {
+    routerToLogin() {
+      this.$router.push('/login')
+    }
+  },
+  computed: {
+    isLogin() {
+      if (localStorage.getItem('zhanghao')) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
 }
 </script>
 
-<style>
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  .trip
+    overflow hidden
+    img
+      margin-top 50px
+      width 100%
+    .btn
+      position absolute
+      top 300px
+      margin-top 20px
+      display block
+      width 44%
+      left 28%
+
+
+
 
 </style>
