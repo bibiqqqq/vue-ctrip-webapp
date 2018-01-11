@@ -1,18 +1,21 @@
 <template>
-  <div class="login">
-    <div class="top">
-      <i class="el-icon-arrow-left back" @click="back"></i>
-      <span class="create">注册</span>
-    </div>
-    <div class="wrapper">
-      <span class="wrapper-title">携程账号登录</span>
-      <div class="input-wrapper">
-        <el-input v-model="zhanghao" class="id" placeholder="国内手机号/用户名/邮箱/卡号"></el-input>
-        <el-input v-model="mima" class="mima" placeholder="登录密码"></el-input>
-        <el-button @click="handleUserInfo" class="btn" type="primary">登录</el-button>
+  <transition name="slide">
+    <div class="login">
+      <div class="top">
+        <i class="el-icon-arrow-left back" @click="back"></i>
+        <span class="create">注册</span>
+      </div>
+      <div class="wrapper">
+        <span class="wrapper-title">携程账号登录</span>
+        <div class="input-wrapper">
+          <el-input v-model="zhanghao" class="id" placeholder="国内手机号/用户名/邮箱/卡号"></el-input>
+          <el-input v-model="mima" class="mima" placeholder="登录密码"></el-input>
+          <el-button @click="handleUserInfo" class="btn" type="primary">登录</el-button>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
+
 </template>
 
 <script>
@@ -47,6 +50,10 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+.slide-enter-active, .slide-leave-active
+    transition: all 0.3s
+.slide-enter, .slide-leave-to
+  transform: translate3d(0, 100%, 0)
 .login
   .top
     height 30px
