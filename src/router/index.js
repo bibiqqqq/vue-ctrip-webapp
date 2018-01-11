@@ -45,12 +45,6 @@ const bookTicket = (resolve) => {
   })
 }
 
-const bookTicket1 = (resolve) => {
-  import('components/book-ticket1/book-ticket1').then((module) => {
-    resolve(module)
-  })
-}
-
 const keyword = (resolve) => {
   import('components/keyword/keyword').then((module) => {
     resolve(module)
@@ -136,28 +130,7 @@ export default new Router({
     {
       path: '/bookTicket',
       name: '订机票',
-      component: bookTicket,
-      children: [
-        {
-          path: '/bookHotel',
-          redirect: '/bookHotel/1'
-        },
-        {
-          path: '/bookTicket/1',
-          name: '单程',
-          component: bookTicket1
-        },
-        {
-          path: '/bookTicket/2',
-          name: '往返',
-          component: bookTicket1
-        },
-        {
-          path: '/bookTicket/3',
-          name: '多程',
-          component: bookTicket1
-        }
-      ]
+      component: bookTicket
     },
     {
       path: '/keyword',
