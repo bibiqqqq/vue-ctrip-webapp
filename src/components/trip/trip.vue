@@ -10,7 +10,7 @@
     </navbar>
     <img src="./trip.png" alt="">
     <el-button v-show="!isLogin" @click="routerToLogin" class="btn" round>登录查看行程</el-button>
-    <el-button v-show="isLogin" @click="routerToLogin" type="warning" class="btn btn-login" round>跟着主播去旅行<i class="el-icon-caret-right"></i></el-button>
+    <el-button v-show="isLogin" @click="routerToBook" type="warning" class="btn btn-login" round>跟着主播去旅行<i class="el-icon-caret-right"></i></el-button>
   </div>
 </template>
 
@@ -20,6 +20,9 @@ export default {
   methods: {
     routerToLogin() {
       this.$router.push('/login')
+    },
+    routerToBook() {
+      this.$router.push('/bookHotel')
     }
   },
   computed: {

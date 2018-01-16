@@ -8,12 +8,12 @@
           </div>
           <div class="search-box">
             <div class="date">
-              <span class="enter">住11-24</span>
-              <span class="leave">离11-25</span>
+              <span class="enter">{{enter}}</span>
+              <span class="leave">{{leave}}</span>
             </div>
             <div class="search">
-              <i class="el-icon-search"></i>
-              <span class="text">南昌</span>
+              <i class="el-icon-search mt"></i>
+              <span class="text mt">{{keywords}}</span>
             </div>
           </div>
           <div class="nav-icon-right">
@@ -65,13 +65,14 @@
         </div>
       </div>
       <router-view></router-view>
+
     </div>
   </transition>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
-import {mapMutations} from 'vuex'
+import {mapMutations, mapGetters} from 'vuex'
 const ERR_OK = 0
 export default {
   data() {
@@ -102,7 +103,7 @@ export default {
           type: 0
         }
       ],
-      hotels: []
+      hotels: {}
     }
   },
   created() {
@@ -117,7 +118,19 @@ export default {
       this.listScroll = new BScroll(this.$refs.listScroll, {
         scrollY: true
       })
-    }, 30)
+    }, 40)
+  },
+  computed: {
+    enter() {
+      return `住${this.nowday.getMonth() + 1}-${this.nowday.getDate()}`
+    },
+    leave() {
+      return `离${this.nowday.getMonth() + 1}-${this.nowday.getDate() + 1}`
+    },
+    ...mapGetters([
+      'nowday',
+      'keywords'
+    ])
   },
   methods: {
     back() {
@@ -183,6 +196,9 @@ export default {
           .search
             display inline-block
             font-size 14px
+            .mt
+              display inline-block
+              margin-top -10px
         .nav-icon-right
           display inline-block
           font-size 19px

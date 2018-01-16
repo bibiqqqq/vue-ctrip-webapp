@@ -11,7 +11,7 @@
       <div class="week">
         <li class="week-day" v-for="item in weeks">{{item}}</li>
       </div>
-      <date-picker></date-picker>
+      <date-picker :calendarDate="this.calendarDate"></date-picker>
     </div>
   </transition>
 </template>
@@ -19,16 +19,23 @@
 <script>
 import {mapGetters} from 'vuex'
 import datePicker from 'base/date-picker/date-picker'
+const ERR_OK = 0
 export default {
   data() {
     return {
-      weeks: ['日', '一', '二', '三', '四', '五', '六']
+      weeks: ['日', '一', '二', '三', '四', '五', '六'],
+      calendarDate: {}
     }
   },
   created() {
     if (!this.navbar) {
       this.$router.back()
     }
+    this.$http.get('/api/calendar').then((response) => {
+      if (response.data.errno === ERR_OK) {
+        this.calendarDate = response.data.data
+      }
+    })
   },
   computed: {
     ...mapGetters([

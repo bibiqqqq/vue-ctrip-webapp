@@ -7,8 +7,8 @@ const state = {
   priceText: true,
   keywords: '',
   navbar: '',
-  nowday: '',
-  hotel: [],
+  nowday: new Date(2017, 10, 1),
+  hotel: {},
   isLogin: false,
   userInfo: {}
 }

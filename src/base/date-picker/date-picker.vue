@@ -1,10 +1,10 @@
 <template>
   <div class="date-picker" ref="dateWrapper">
     <div>
-      <div class="month-box" v-for="item in calendarDate">
-        <span class="month">{{item.name}}</span>
+      <div class="month-box" v-for="month in calendarDate">
+        <span class="month">{{month.name}}</span>
         <div class="day-wrapper">
-          <div class="day-box" v-for="item in item.day">
+          <div class="day-box" v-for="(item, index) in month.day" @click="selectDay(item, month)" :class="{act:isSelectDay===item}" >
             <span class="festival">{{item.festival}}</span>
             <span class="day">{{item.day}}</span>
           </div>
@@ -16,12 +16,37 @@
 
 <script>
 import BScroll from 'better-scroll'
-const ERR_OK = 0
+import {mapGetters, mapMutations} from 'vuex'
 export default {
   data() {
     return {
-      calendarDate: []
+      isSelectDay: ''
     }
+  },
+  props: {
+    calendarDate: {
+      type: Object
+    }
+  },
+  methods: {
+    selectDay(item, month) {
+      this.isSelectDay = item
+      const thisYear = month.id.slice(0, 4)
+      const thisMonth = month.id.slice(4, 7)
+      const thisNowDay = new Date(thisYear, thisMonth, item.day)
+      this.setNowday(thisNowDay)
+      setTimeout(() => {
+        this.$router.back()
+      }, 100)
+    },
+    ...mapMutations({
+      setNowday: 'SET_NOWDAY'
+    })
+  },
+  computed: {
+    ...mapGetters([
+      'nowday'
+    ])
   },
   mounted() {
     setTimeout(() => {
@@ -29,14 +54,6 @@ export default {
         scrollY: true
       })
     }, 20)
-  },
-  created() {
-    this.$http.get('/api/calendar').then((response) => {
-      if (response.data.errno === ERR_OK) {
-        this.calendarDate = response.data.data
-        console.log(this.calendarDate)
-      }
-    })
   }
 }
 </script>
@@ -76,6 +93,9 @@ export default {
             margin auto
             left 0
             right 0
-
+        .act
+          background #409eff
+          color: #ffffff
+          border-radius 2px
 
 </style>

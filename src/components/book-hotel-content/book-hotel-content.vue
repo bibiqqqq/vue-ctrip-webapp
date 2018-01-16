@@ -11,9 +11,15 @@
 
     </div>
     <div class="date">
-      <div class="date-left" :navbar="checkinBar" @click="checkin"></div>
-      <div class="dates"></div>
-      <div class="date-right" :navbar="checkoutBar" @click="checkout"></div>
+      <div class="date-left" :navbar="checkinBar" @click="checkin">
+        <span class="monthData">{{today}}</span>
+        <span class="weekday">{{todayWeekday}}</span>
+      </div>
+      <div class="dates">{{tmrtoday}}</div>
+      <div class="date-right" :navbar="checkoutBar">
+        <span class="monthData">{{tmr}}</span>
+         <span class="weekday">{{tmrWeekday}}</span>
+      </div>
     </div>
     <div class="hotel-list" @click="keyword">
       <span class="text" v-show="keywords.length === 0">关键字/位置/品牌/酒店名</span>
@@ -67,6 +73,23 @@ export default {
     }
   },
   methods: {
+    _weekday(weekday) {
+      if (weekday === 0) {
+        return '周日'
+      } else if (weekday === 1) {
+        return '周一'
+      } else if (weekday === 2) {
+        return '周二'
+      } else if (weekday === 3) {
+        return '周三'
+      } else if (weekday === 4) {
+        return '周四'
+      } else if (weekday === 5) {
+        return '周五'
+      } else if (weekday === 6) {
+        return '周六'
+      }
+    },
     selectHotel() {
       this.$emit('selectHotel')
     },
@@ -111,6 +134,21 @@ export default {
     })
   },
   computed: {
+    tmrtoday() {
+      return '1晚'
+    },
+    todayWeekday() {
+      return this._weekday(this.nowday.getDay())
+    },
+    tmrWeekday() {
+      return this._weekday(this.nowday.getDay() + 1)
+    },
+    tmr() {
+      return `${this.nowday.getMonth()}月${this.nowday.getDate() + 1}日`
+    },
+    today() {
+      return `${this.nowday.getMonth()}月${this.nowday.getDate()}日`
+    },
     starName() {
       return this.starLevel
     },
@@ -121,7 +159,8 @@ export default {
       'priceText',
       'priceClose',
       'starLevel',
-      'keywords'
+      'keywords',
+      'nowday'
     ])
   }
 }
@@ -162,8 +201,16 @@ export default {
       .date-left
         flex 1
         border-right 1px solid #ebebeb
+        line-height 50px
+        .monthData
+          font-size 24px
+          margin-left 15px
       .date-right
         flex 1
+        line-height 50px
+        .monthData
+          font-size 24px
+          margin-left 40px
       .dates
         position absolute
         border 1px solid #ebebeb
@@ -177,6 +224,8 @@ export default {
         background #ffffff
         z-index 50
         border-radius 10px
+        text-align center
+        line-height 20px
     .hotel-list, .price
       height 45px
       border-bottom 1px solid #ebebeb

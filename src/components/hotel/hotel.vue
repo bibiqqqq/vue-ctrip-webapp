@@ -1,8 +1,7 @@
 <template>
   <transition name="slide">
     <div class="hotel">
-      <hotel-detail :hotel="hotel"></hotel-detail>
-      <router-view></router-view>
+      <hotel-detail :hotel="this.hotel"></hotel-detail>
     </div>
   </transition>
 </template>
@@ -11,13 +10,15 @@
 import hotelDetail from 'components/hotel-detail/hotel-detail'
 import {mapGetters} from 'vuex'
 export default {
-  created() {
-    console.log(this.hotel)
-  },
   computed: {
     ...mapGetters([
       'hotel'
     ])
+  },
+  created() {
+    if (!this.hotel.id) {
+      this.$router.back()
+    }
   },
   components: {
     hotelDetail
