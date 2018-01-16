@@ -21,3 +21,9 @@ export const hotel = state => state.hotel
 export const isLogin = state => state.isLogin
 
 export const userInfo = state => state.userInfo
+
+export const bookedHotel = state => state.bookedHotel
+
+export const checkin = state => state.checkin
+
+export const checkout = state => state.checkout

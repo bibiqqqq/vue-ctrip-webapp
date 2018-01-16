@@ -21,3 +21,9 @@ export const SET_HOTEL = 'SET_HOTEL'
 export const SET_ISLOGIN = 'SET_ISLOGIN'
 
 export const SET_USERINFO = 'SET_USERINFO'
+
+export const SET_BOOKEDHOTEL = 'SET_BOOKEDHOTEL'
+
+export const SET_CHECKIN = 'SET_CHECKIN'
+
+export const SET_CHECKOUT = 'SET_CHECKOUT'

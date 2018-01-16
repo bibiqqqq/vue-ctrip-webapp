@@ -36,6 +36,15 @@ const mutations = {
   },
   [types.SET_USERINFO](state, userInfo) {
     state.userInfo = userInfo
+  },
+  [types.SET_BOOKEDHOTEL](state, bookedHotel) {
+    state.bookedHotel = bookedHotel
+  },
+  [types.SET_CHECKIN](state, checkin) {
+    state.checkin = checkin
+  },
+  [types.SET_CHECKOUT](state, checkout) {
+    state.checkout = checkout
   }
 }
 export default mutations

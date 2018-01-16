@@ -10,6 +10,9 @@ const state = {
   nowday: new Date(2017, 10, 1),
   hotel: {},
   isLogin: false,
-  userInfo: {}
+  userInfo: {},
+  bookedHotel: {},
+  checkin: '',
+  checkout: ''
 }
 export default state

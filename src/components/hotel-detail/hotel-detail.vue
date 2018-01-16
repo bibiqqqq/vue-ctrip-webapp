@@ -42,7 +42,7 @@
             </div>
             <div class="room-right">
               <span>￥</span><span class="room-price">{{item.price}}</span><span>起</span>
-              <div class="room-box">
+              <div class="room-box" @click="open2">
                 <span class="box-top">订</span>
                 <span class="box-bottom">在线付</span>
               </div>
@@ -57,6 +57,7 @@
 <script>
 import navbar from 'base/navbar/navbar'
 import BScroll from 'better-scroll'
+import {mapMutations, mapGetters} from 'vuex'
 export default {
   props: {
     hotel: {
@@ -68,6 +69,12 @@ export default {
       this.$router.back()
     }
   },
+  computed: {
+    ...mapGetters([
+      'checkin',
+      'checkout'
+    ])
+  },
   mounted() {
     setTimeout(() => {
       this.topWrapper = new BScroll(this.$refs.topWrapper, {
@@ -78,7 +85,49 @@ export default {
   methods: {
     routerBack() {
       this.$router.back()
-    }
+    },
+    _storage() {
+      if (localStorage.getItem('zhanghao')) {
+        return true
+      } else {
+        return false
+      }
+    },
+    open2() {
+      if (this._storage()) {
+        this.$confirm('是否确认为此房型?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'info',
+          center: 'true'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '订房成功'
+          })
+        }).then(() => {
+          this.$router.push('/mime')
+          this.setBookedHotel({
+            name: this.hotel.name,
+            price: this.hotel.price,
+            location: this.hotel.location,
+            checkin: this.checkin,
+            checkout: this.checkout
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '请继续选择'
+          })
+        })
+      } else {
+        this.$router.push('/login')
+      }
+    },
+    ...mapMutations({
+      setBookedHotel: 'SET_BOOKEDHOTEL'
+    })
   },
   components: {
     navbar

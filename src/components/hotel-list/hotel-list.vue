@@ -8,8 +8,8 @@
           </div>
           <div class="search-box">
             <div class="date">
-              <span class="enter">{{enter}}</span>
-              <span class="leave">{{leave}}</span>
+              <span class="enter">住{{enter}}</span>
+              <span class="leave">离{{leave}}</span>
             </div>
             <div class="search">
               <i class="el-icon-search mt"></i>
@@ -112,6 +112,8 @@ export default {
         this.hotels = response.data.data
       }
     })
+    this.setCheckin(this.enter)
+    this.setCheckout(this.leave)
   },
   mounted() {
     setTimeout(() => {
@@ -122,10 +124,10 @@ export default {
   },
   computed: {
     enter() {
-      return `住${this.nowday.getMonth() + 1}-${this.nowday.getDate()}`
+      return `${this.nowday.getMonth()}-${this.nowday.getDate()}`
     },
     leave() {
-      return `离${this.nowday.getMonth() + 1}-${this.nowday.getDate() + 1}`
+      return `${this.nowday.getMonth()}-${this.nowday.getDate() + 1}`
     },
     ...mapGetters([
       'nowday',
@@ -143,7 +145,9 @@ export default {
       this.setHotel(item)
     },
     ...mapMutations({
-      setHotel: 'SET_HOTEL'
+      setHotel: 'SET_HOTEL',
+      setCheckin: 'SET_CHECKIN',
+      setCheckout: 'SET_CHECKOUT'
     })
   }
 }
