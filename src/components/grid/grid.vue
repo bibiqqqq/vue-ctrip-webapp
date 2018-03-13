@@ -14,7 +14,7 @@
         <span class="text">民宿·客栈</span>
       </div>
     </div>
-    <div class="ticket" @click="bookTicket">
+    <div class="ticket" >
       <div class="left">
         <span class="text">机票</span>
         <img class="icon-img" src="./plane.png" width="42px">
@@ -51,11 +51,6 @@ export default {
     bookHotel () {
       this.$router.push({
         path: '/bookHotel'
-      })
-    },
-    bookTicket() {
-      this.$router.push({
-        path: '/bookTicket'
       })
     }
   }

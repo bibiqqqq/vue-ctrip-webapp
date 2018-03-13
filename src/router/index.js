@@ -39,11 +39,11 @@ const bookHotel1 = (resolve) => {
   })
 }
 
-const bookTicket = (resolve) => {
-  import('components/book-ticket/book-ticket').then((module) => {
-    resolve(module)
-  })
-}
+// const bookTicket = (resolve) => {
+//   import('components/book-ticket/book-ticket').then((module) => {
+//     resolve(module)
+//   })
+// }
 
 const keyword = (resolve) => {
   import('components/keyword/keyword').then((module) => {
@@ -127,11 +127,11 @@ export default new Router({
         }
       ]
     },
-    {
-      path: '/bookTicket',
-      name: '订机票',
-      component: bookTicket
-    },
+    // {
+    //   path: '/bookTicket',
+    //   name: '订机票',
+    //   component: bookTicket
+    // },
     {
       path: '/keyword',
       name: '关键字',
